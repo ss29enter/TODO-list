@@ -1,27 +1,27 @@
 {
     "1": {
-        "task": "Закончить возню с приоритетами в проекте + закоммитить",
+        "task": "домашка по гиту + начать гитхаб",
         "done": true,
         "priority": "Critical"
     },
     "2": {
-        "task": "Задачи по питону",
+        "task": "питончик",
         "done": true,
-        "priority": "High"
+        "priority": "Critical"
     },
     "3": {
-        "task": "Продолжить изучение git",
+        "task": "проект точно начну! + pathlib ",
         "done": true,
-        "priority": "High"
+        "priority": "Critical"
     },
     "4": {
-        "task": "Практика по линукс",
-        "done": false,
-        "priority": "High"
-    },
-    "5": {
-        "task": "Продолжить тему \"динамическое программирование\"",
+        "task": "алгоритмы",
         "done": false,
         "priority": "Medium"
+    },
+    "5": {
+        "task": "Задача на литкод (оптимизировать решение)",
+        "done": false,
+        "priority": "High"
     }
 }

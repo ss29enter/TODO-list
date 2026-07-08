@@ -1,9 +1,6 @@
 from textwrap import wrap
-from os import system
+import os
 
-### интерфейс
-
-# меню
 def show_actions():
     print_separator('menu')
     print('1. Add a task')
@@ -13,7 +10,6 @@ def show_actions():
     print('X. Exit the action\n')
     print_separator('act')
 
-# вывести разделители 
 def print_separator(cmd):
     if cmd == 'title':
         print(f'{'='*19} TODO  LIST {'='*19}\n')
@@ -25,13 +21,11 @@ def print_separator(cmd):
         print('='*50)
         print('\t\tSelect an action\n')
 
-# очищает экран перед выводом
 def clear_screen(tasks): 
-    system('cls')
+    os.system('cls' if os.name == 'nt' else 'clear')
     show_tasks(tasks)
     show_actions()
 
-# ввод пользователя + ввод уровня приоритета
 def user_input(opt):
     if opt == 'u':
         user = input('>> ').lower()
@@ -42,19 +36,18 @@ def user_input(opt):
         return user_input(opt)
     return user
 
-# выход из действия
-def exit_from_action(user):
+def exit_the_action(user):
     return user.lower() in ['x','exit']
 
-### действия
-
-# добавить задачу + присвоить ей номер + приоритет
 def add_task(tasks):
+    '''
+    Add a task, assign it a number and a priority level (determined by the user)
+    '''
     task = input('Task: ')
-    priority = user_input('p')
-    priority_range = ['Critical','High','Medium','Low'][int(priority)-1]
-    if exit_from_action(task):
+    if exit_the_action(task):
         return
+    priority = user_input('p')
+    priority_name = ['Critical','High','Medium','Low'][int(priority)-1]
     if task=='':
         return print('You entered an empty string.'), add_task(tasks)                             
     if tasks:
@@ -63,11 +56,13 @@ def add_task(tasks):
     tasks[new_id] = {
         'task': task,
         'done': False,
-        'priority': priority_range
+        'priority': priority_name
     }
 
-# показать текущие задачи + рассортировать по приоритету
 def show_tasks(tasks):
+    '''
+    Show current tasks and display them, grouping by priority
+    '''
     print_separator('title')
     priority_order = [
         'Critical',
@@ -77,7 +72,6 @@ def show_tasks(tasks):
     ]
     if tasks == {}:
         return print("\t\tYou don't have any\n\t\tcurrent tasks yet\n")
-
     for priority in priority_order:
         print('! ' + priority.upper())
         for number in tasks.keys():
@@ -86,14 +80,12 @@ def show_tasks(tasks):
                 task = f'{number}) ☒  {id['task']}' if id['done'] else f'{number}) ☐  {id['task']}' 
                 for line in wrap(task,width=48):
                     print(' '*2 + line.ljust(48,'.'))
-            else: continue
         print()
     count_completed(tasks)
 
-# отметить задачу завершенной
 def mark_completed(tasks):
     number = input('Enter the number: ')
-    if exit_from_action(number):
+    if exit_the_action(number):
         return
     try: 
         tasks[number]['done'] = True
@@ -101,7 +93,6 @@ def mark_completed(tasks):
         print('Invalid issue number.')
         mark_completed(tasks)
 
-# подсчитать кол-во завершенных/оставшихся задач
 def count_completed(tasks):
     done = 0
     for id in tasks:
@@ -115,13 +106,15 @@ def count_completed(tasks):
         print(f'Done: {done}')
         print(f'Remained: {not_done}') 
 
-# удалить задачу из списка + перенумеровать задачи  
 def remove_task(tasks):
+    '''
+    Delete a task or clear the entire list, renumber tasks
+    '''
     number = input('Enter the number or "ALL" to clear list: ')
+    if exit_the_action(number):
+        return tasks
     if number == 'ALL':
         return {}
-    if exit_from_action(number):
-        return
     try:
         del tasks[number]
     except KeyError:

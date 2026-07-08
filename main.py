@@ -1,7 +1,6 @@
 from task_manager import *
 from storage import *
 
-# работа основной программы
 def main():
     tasks = load_tasks()
     show_tasks(tasks)
@@ -22,6 +21,5 @@ def main():
             user = user_input('u')
     save_tasks(tasks)
 
-# запуск программы
 if __name__ == '__main__':
     main()
