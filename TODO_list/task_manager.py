@@ -77,7 +77,7 @@ def show_tasks(tasks):
         for number in tasks.keys():
             id = tasks[number]
             if id['priority'] == priority:
-                task = f'{number}) ☒  {id['task']}' if id['done'] else f'{number}) ☐  {id['task']}' 
+                task = f'{number}) ☒ {id['task']}' if id['done'] else f'{number}) ☐ {id['task']}' 
                 for line in wrap(task,width=48):
                     print(' '*2 + line.ljust(48,'.'))
         print()

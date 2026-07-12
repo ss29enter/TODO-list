@@ -1,3 +1,4 @@
+todo_list
 __pycache__/
 *.py[cod]
 *.pyo
@@ -8,3 +9,5 @@ venv/
 
 .pytest_cache/
 .mypy_cache/
+
+image.png
