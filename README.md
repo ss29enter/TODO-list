@@ -6,9 +6,9 @@ A simple command-line task manager written in Python. The application allows use
 
 ---
 
-## Preview
+## Demo
 
-![Todo List preview](image.png)
+![Todo List preview](images/image.png)
 
 ---
 
@@ -34,17 +34,19 @@ A simple command-line task manager written in Python. The application allows use
 
 ## Project Structure
 ``` text
-TODO_list/
+TODO-list/
 │
 ├── README.md
 ├── main.py
 ├── task_manager.py
 ├── storage.py
+├── images/
+│   └── preview.png
 └── .gitignore
 ```
 ---
 
-## How to Run
+## Installation
 
 1. Clone the repository:
 ``` bash
@@ -52,7 +54,7 @@ git clone git@github.com:ss29enter/TODO-list.git
 ```
 2. Navigate to the project folder:
 ``` bash
-cd TODO_list
+cd TODO-list
 ```
 3. Run the program:
 ``` bash
@@ -60,7 +62,7 @@ python main.py
 ```
 ---
 
-## Example
+## Usage
 
 * Creating a new task:
 
@@ -76,7 +78,6 @@ Task list:
 
 ! HIGH
   1) ☐ Continue learning Python
-
 ```
 * Mark the task as comleted:
 
@@ -109,10 +110,9 @@ Task list:
 - Add task editing
 - Add deadlines
 - Add task categories
-- Add unit tests
 
 ---
 
-## Author
+## License
 
-Created by [ss29enter](https://github.com/ss29enter)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
